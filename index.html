@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Masha Frontend Portfolio</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <h1>Masha Frontend Portfolio</h1>
+  <nav>
+    <a href="#about">O mnie</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#contact">Kontakt</a>
+  </nav>
+</header>
+
+<main>
+  <section id="about">
+    <h2>O mnie</h2>
+    <p>To prosty projekt frontendowy bez backendu. HTML, CSS i JS.</p>
+  </section>
+
+  <section id="portfolio">
+    <h2>Portfolio</h2>
+    <div class="projects">
+      <div class="proj">
+        <img src="https://via.placeholder.com/400x200?text=Projekt+1" alt="Projekt 1">
+        <p>Opis Projektu 1</p>
+      </div>
+      <div class="proj">
+        <img src="https://via.placeholder.com/400x200?text=Projekt+2" alt="Projekt 2">
+        <p>Opis Projektu 2</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Kontakt</h2>
+    <form id="contactForm">
+      <input type="text" name="name" placeholder="Imię" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <textarea name="message" placeholder="Wiadomość" required></textarea>
+      <button type="submit">Wyślij</button>
+    </form>
+    <p id="formStatus"></p>
+  </section>
+</main>
+
+<footer>
+  <p>© Masha 66766</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
