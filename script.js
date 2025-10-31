@@ -1,44 +1,42 @@
-document.addEventListener("DOMContentLoaded",()=>{
-  const sections=document.querySelectorAll(".section");
-  const links=document.querySelectorAll("nav a");
-  const form=document.getElementById("contactForm");
-  const status=document.getElementById("formStatus");
-  const messagesList=document.getElementById("messagesList");
-  const storageKey="masha_66766_messages";
+const links = document.querySelectorAll("header nav a");
+const sections = document.querySelectorAll(".section");
 
-  function showSection(id){
-    sections.forEach(s=>s.classList.remove("active"));
-    document.getElementById(id).classList.add("active");
-  }
-
-  links.forEach(link=>{
-    link.addEventListener("click",(e)=>{
-      e.preventDefault();
-      const target=link.getAttribute("href").substring(1);
-      showSection(target);
-    });
-  });
-
-  showSection("about");
-
-  function showMessages(){
-    let messages=JSON.parse(localStorage.getItem(storageKey)||"[]");
-    messagesList.innerHTML = messages.length
-      ? messages.map(m=>`<p><b>${m.name}</b> (${m.email})<br>${m.message}<br><small>${m.time}</small></p>`).join("")
-      : "<p>Brak wiadomości</p>";
-  }
-
-  showMessages();
-
-  form.addEventListener("submit",(e)=>{
+links.forEach(link => {
+  link.addEventListener("click", e => {
     e.preventDefault();
-    const data={name:form.name.value,email:form.email.value,message:form.message.value,time:new Date().toLocaleString("pl-PL")};
-    let messages=JSON.parse(localStorage.getItem(storageKey)||"[]");
-    messages.push(data);
-    localStorage.setItem(storageKey,JSON.stringify(messages));
-    form.reset();
-    status.textContent=`Wiadomość zapisana`;
-    showMessages();
-    setTimeout(()=>status.textContent="",2000);
+    const target = link.dataset.section;
+
+    sections.forEach(s => s.classList.remove("active"));
+    document.getElementById(target).classList.add("active");
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
   });
+});
+
+const form = document.getElementById("contactForm");
+
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(form));
+  localStorage.setItem("lastMessage", JSON.stringify(data));
+
+  alert("Wiadomość wysłana!");
+  form.reset();
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = "1";
+      entry.target.style.transform = "translateY(0)";
+    }
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll(".proj, input, textarea, button, h2, p")
+.forEach(el => {
+  el.style.opacity = "0";
+  el.style.transform = "translateY(20px)";
+  el.style.transition = ".6s ease";
+  observer.observe(el);
 });
