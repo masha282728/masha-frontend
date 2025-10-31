@@ -1,8 +1,25 @@
 document.addEventListener("DOMContentLoaded",()=>{
+  const sections=document.querySelectorAll(".section");
+  const links=document.querySelectorAll("nav a");
   const form=document.getElementById("contactForm");
   const status=document.getElementById("formStatus");
   const messagesList=document.getElementById("messagesList");
   const storageKey="masha_66766_messages";
+
+  function showSection(id){
+    sections.forEach(s=>s.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+  }
+
+  links.forEach(link=>{
+    link.addEventListener("click",(e)=>{
+      e.preventDefault();
+      const target=link.getAttribute("href").substring(1);
+      showSection(target);
+    });
+  });
+
+  showSection("about");
 
   function showMessages(){
     let messages=JSON.parse(localStorage.getItem(storageKey)||"[]");
@@ -20,7 +37,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     messages.push(data);
     localStorage.setItem(storageKey,JSON.stringify(messages));
     form.reset();
-    status.textContent=`Wiadomość zapisana.`;
+    status.textContent=`Wiadomość zapisana`;
     showMessages();
     setTimeout(()=>status.textContent="",2000);
   });
