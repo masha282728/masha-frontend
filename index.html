@@ -1,24 +1,24 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Masha Frontend Portfolio</title>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
   <h1>Masha Frontend Portfolio</h1>
   <nav>
-    <a href="#about">O mnie</a>
-    <a href="#portfolio">Portfolio</a>
-    <a href="#contact">Kontakt</a>
+    <a href="#" data-section="home">O mnie</a>
+    <a href="#" data-section="portfolio">Portfolio</a>
+    <a href="#" data-section="contact">Kontakt</a>
   </nav>
 </header>
 
 <main>
-  <section id="about" class="section">
+  <section id="home" class="section active">
     <h2>O mnie</h2>
     <p>To prosty projekt frontendowy bez backendu. HTML, CSS i JS.</p>
   </section>
@@ -27,11 +27,14 @@
     <h2>Portfolio</h2>
     <div class="projects">
       <div class="proj">
-        <img src="https://placehold.co/400x200?text=Projekt+1" alt="Projekt 1">
+        <img src="https://picsum.photos/300/200?random=1">
+        <h3>Projekt 1</h3>
         <p>Opis Projektu 1</p>
       </div>
+
       <div class="proj">
-        <img src="https://placehold.co/400x200?text=Projekt+2" alt="Projekt 2">
+        <img src="https://picsum.photos/300/200?random=2">
+        <h3>Projekt 2</h3>
         <p>Opis Projektu 2</p>
       </div>
     </div>
@@ -42,19 +45,17 @@
     <form id="contactForm">
       <input type="text" name="name" placeholder="Imię" required>
       <input type="email" name="email" placeholder="Email" required>
-      <textarea name="message" placeholder="Wiadomość" required></textarea>
+      <textarea name="message" rows="4" placeholder="Wiadomość" required></textarea>
       <button type="submit">Wyślij</button>
     </form>
-    <p id="formStatus"></p>
   </section>
 </main>
 
-<footer>
-  <p>© Masha 66766</p>
-</footer>
+<footer>© Masha 66766</footer>
 
 <script src="script.js"></script>
 </body>
 </html>
+
 
 
